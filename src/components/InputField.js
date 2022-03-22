@@ -1,10 +1,26 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-const InputField = () => {
+const InputField = ({ todoList, setTodoList }) => {
+  const [inputText, setInputText] = useState('');
+
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const todo = { id: Date.now(), text: inputText };
+    setTodoList([...todoList, todo]);
+
+    setInputText('');
+  };
+
   return (
-    <InputForm>
-      <Input />
-      <SubmitBtn>+</SubmitBtn>
+    <InputForm onSubmit={handleFormSubmit}>
+      <Input value={inputText} onChange={handleInputChange} />
+      <SubmitBtn onClick={handleFormSubmit}>+</SubmitBtn>
     </InputForm>
   );
 };

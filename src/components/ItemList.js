@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ItemList = () => {
+const ItemList = ({ todoList }) => {
   return (
     <>
       <ListTitle>TO DO</ListTitle>
