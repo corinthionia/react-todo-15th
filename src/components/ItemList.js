@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
-const ItemList = ({ todoList }) => {
+const ItemList = ({ todoList, doneList, setTodoList, setDoneList }) => {
   return (
     <>
-      <ListTitle>TO DO</ListTitle>
-      <List></List>
-      <ListTitle>DONE</ListTitle>
-      <List></List>
+      <ListTitle>{`TO DO (${todoList.length})`}</ListTitle>
+      <List>
+        {todoList.map((todo) => (
+          <div>{todo.text}</div>
+        ))}
+      </List>
+      <ListTitle>{`DONE (${doneList.length})`}</ListTitle>
+      <List>
+        {doneList.map((todo) => (
+          <div>{todo.text}</div>
+        ))}
+      </List>
     </>
   );
 };

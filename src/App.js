@@ -11,7 +11,12 @@ function App() {
     <Wrapper>
       <Header>투두리스트</Header>
       <InputField todoList={todoList} setTodoList={setTodoList} />
-      <ItemList todoList={todoList} doneList={doneList} />
+      <ItemList
+        todoList={todoList}
+        doneList={doneList}
+        setTodoList={setTodoList}
+        setDoneList={setDoneList}
+      />
     </Wrapper>
   );
 }
