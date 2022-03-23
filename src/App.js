@@ -4,19 +4,13 @@ import InputField from './components/InputField';
 import ItemList from './components/ItemList';
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
-  const [doneList, setDoneList] = useState([]);
+  const [itemList, setItemList] = useState({ todoList: [], doneList: [] });
 
   return (
     <Wrapper>
       <Header>투두리스트</Header>
-      <InputField todoList={todoList} setTodoList={setTodoList} />
-      <ItemList
-        todoList={todoList}
-        doneList={doneList}
-        setTodoList={setTodoList}
-        setDoneList={setDoneList}
-      />
+      <InputField itemList={itemList} setItemList={setItemList} />
+      <ItemList itemList={itemList} setItemList={setItemList} />
     </Wrapper>
   );
 }

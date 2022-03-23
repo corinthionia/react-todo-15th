@@ -1,18 +1,36 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-const ItemList = ({ todoList, doneList, setTodoList, setDoneList }) => {
+const ItemList = ({ itemList, setItemList }) => {
+  const { todoList, doneList } = itemList;
+  const [clickedTodo, setClickedTodo] = useState([]);
+
+  const handleTodoClick = (e) => {
+    // const filteredList = todoList.index(
+    //   (todo) => todo.id !== parseInt(e.target.id)
+    // );
+
+    setClickedTodo(todoList.filter(({ id }) => id === parseInt(e.target.id)));
+
+    console.log(clickedTodo);
+  };
+
   return (
     <>
       <ListTitle>{`TO DO (${todoList.length})`}</ListTitle>
       <List>
-        {todoList.map((todo) => (
-          <div>{todo.text}</div>
+        {todoList.map(({ id, text }) => (
+          <div key={id} id={id} onClick={handleTodoClick}>
+            {text}
+          </div>
         ))}
       </List>
       <ListTitle>{`DONE (${doneList.length})`}</ListTitle>
       <List>
-        {doneList.map((todo) => (
-          <div>{todo.text}</div>
+        {doneList.map(({ id, text }) => (
+          <div key={id} id={id} onClick={handleTodoClick}>
+            {text}
+          </div>
         ))}
       </List>
     </>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const InputField = ({ todoList, setTodoList }) => {
+const InputField = ({ itemList, setItemList }) => {
   const [inputText, setInputText] = useState('');
 
   const handleInputChange = (e) => {
@@ -11,8 +11,12 @@ const InputField = ({ todoList, setTodoList }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    const todo = { id: Date.now(), text: inputText };
-    setTodoList([...todoList, todo]);
+    const todo = { id: Date.now(), text: inputText, isDone: false };
+
+    setItemList({
+      todoList: itemList.todoList.concat(todo),
+      doneList: [...itemList.doneList],
+    });
 
     setInputText('');
   };
