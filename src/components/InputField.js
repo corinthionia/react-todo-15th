@@ -12,11 +12,7 @@ const InputField = ({ itemList, setItemList }) => {
     e.preventDefault();
 
     const todo = { id: Date.now(), text: inputText, isDone: false };
-
-    setItemList({
-      todoList: itemList.todoList.concat(todo),
-      doneList: [...itemList.doneList],
-    });
+    setItemList([...itemList, todo]);
 
     setInputText('');
   };

@@ -4,7 +4,7 @@ import InputField from './components/InputField';
 import ItemList from './components/ItemList';
 
 function App() {
-  const [itemList, setItemList] = useState({ todoList: [], doneList: [] });
+  const [itemList, setItemList] = useState([]);
 
   return (
     <Wrapper>

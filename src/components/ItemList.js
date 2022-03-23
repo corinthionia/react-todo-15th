@@ -2,17 +2,17 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const ItemList = ({ itemList, setItemList }) => {
-  const { todoList, doneList } = itemList;
-  const [clickedTodo, setClickedTodo] = useState([]);
+  const todoList = itemList.filter((todo) => todo.isDone === false);
+  const doneList = itemList.filter((todo) => todo.isDone === true);
 
   const handleTodoClick = (e) => {
-    // const filteredList = todoList.index(
-    //   (todo) => todo.id !== parseInt(e.target.id)
-    // );
+    const newList = itemList.map((todo) =>
+      todo.id === parseInt(e.target.id)
+        ? { ...todo, isDone: !todo.isDone }
+        : todo
+    );
 
-    setClickedTodo(todoList.filter(({ id }) => id === parseInt(e.target.id)));
-
-    console.log(clickedTodo);
+    setItemList(newList);
   };
 
   return (
