@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import styled from 'styled-components';
 
 const ItemList = ({ itemList, setItemList }) => {
@@ -25,30 +24,34 @@ const ItemList = ({ itemList, setItemList }) => {
 
   return (
     <>
-      <ListTitle>{`TO DO (${todoList.length})`}</ListTitle>
+      <ListTitle>{`${todoList.length}개의 할일이 남아 있어요`}</ListTitle>
       <List>
         {todoList.map(({ id, text }) => (
-          <Fragment key={id}>
-            <div id={id} onClick={handleTodoClick}>
+          <TodoWrapper key={id}>
+            <TodoText id={id} onClick={handleTodoClick}>
               {text}
-            </div>
-            <div id={id} onClick={handleBinClick}>
-              X
-            </div>
-          </Fragment>
+            </TodoText>
+            <Bin
+              src={`${process.env.PUBLIC_URL}/img/bin.png`}
+              id={id}
+              onClick={handleBinClick}
+            />
+          </TodoWrapper>
         ))}
       </List>
-      <ListTitle>{`DONE (${doneList.length})`}</ListTitle>
+      <ListTitle>{`${doneList.length}개의 할일을 완료했어요`}</ListTitle>
       <List>
         {doneList.map(({ id, text }) => (
-          <Fragment key={id}>
-            <div id={id} onClick={handleTodoClick}>
+          <TodoWrapper key={id}>
+            <TodoText id={id} onClick={handleTodoClick}>
               {text}
-            </div>
-            <div id={id} onClick={handleBinClick}>
-              X
-            </div>
-          </Fragment>
+            </TodoText>
+            <Bin
+              src={`${process.env.PUBLIC_URL}/img/bin.png`}
+              id={id}
+              onClick={handleBinClick}
+            />
+          </TodoWrapper>
         ))}
       </List>
     </>
@@ -66,6 +69,20 @@ const List = styled.section`
   height: 35%;
   background: powderblue;
   overflow: auto;
+`;
+
+const TodoWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TodoText = styled.span``;
+
+const Bin = styled.img`
+  width: 16px;
+  height: 16px;
 `;
 
 export default ItemList;
