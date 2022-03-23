@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 
 const ItemList = ({ itemList, setItemList }) => {
@@ -15,22 +15,40 @@ const ItemList = ({ itemList, setItemList }) => {
     setItemList(newList);
   };
 
+  const handleBinClick = (e) => {
+    const filteredList = itemList.filter(
+      (todo) => todo.id !== parseInt(e.target.id)
+    );
+
+    setItemList(filteredList);
+  };
+
   return (
     <>
       <ListTitle>{`TO DO (${todoList.length})`}</ListTitle>
       <List>
         {todoList.map(({ id, text }) => (
-          <div key={id} id={id} onClick={handleTodoClick}>
-            {text}
-          </div>
+          <Fragment key={id}>
+            <div id={id} onClick={handleTodoClick}>
+              {text}
+            </div>
+            <div id={id} onClick={handleBinClick}>
+              X
+            </div>
+          </Fragment>
         ))}
       </List>
       <ListTitle>{`DONE (${doneList.length})`}</ListTitle>
       <List>
         {doneList.map(({ id, text }) => (
-          <div key={id} id={id} onClick={handleTodoClick}>
-            {text}
-          </div>
+          <Fragment key={id}>
+            <div id={id} onClick={handleTodoClick}>
+              {text}
+            </div>
+            <div id={id} onClick={handleBinClick}>
+              X
+            </div>
+          </Fragment>
         ))}
       </List>
     </>
