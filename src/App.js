@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputField from './components/InputField';
 import ItemList from './components/ItemList';
 import { GlobalStyle } from './style/GlobalStyle';
 
 function App() {
-  const [itemList, setItemList] = useState([]);
+  const [itemList, setItemList] = useState(
+    JSON.parse(localStorage.getItem('itemList')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('itemList', JSON.stringify(itemList));
+  }, [itemList]);
 
   return (
     <>
