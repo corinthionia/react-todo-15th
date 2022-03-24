@@ -19,7 +19,13 @@ const InputField = ({ itemList, setItemList }) => {
 
   return (
     <InputForm onSubmit={handleFormSubmit}>
-      <Input value={inputText} onChange={handleInputChange} />
+      <Input
+        value={inputText}
+        onChange={handleInputChange}
+        spellCheck="false"
+        autoFocus
+        placeholder="할일을 입력하세요"
+      />
       <SubmitBtn onClick={handleFormSubmit}>➕</SubmitBtn>
     </InputForm>
   );
@@ -33,10 +39,16 @@ const InputForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: 80%;
+  width: 77.5%;
   height: 50%;
   border-radius: 8px;
   border: 1px solid #ececec;
+  padding-left: 2.5%;
+  background: rgba(255, 255, 255, 0.1);
+
+  ::placeholder {
+    color: #ececec;
+  }
 `;
 
 const SubmitBtn = styled.button`
@@ -46,6 +58,10 @@ const SubmitBtn = styled.button`
   background: none;
   border-radius: 8px;
   border: 1px solid #ececec;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default InputField;

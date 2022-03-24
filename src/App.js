@@ -32,6 +32,8 @@ const Wrapper = styled.main`
   border-radius: 16px;
   border: 1px solid #ececec;
   overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.1);
 `;
 
 const Header = styled.header`

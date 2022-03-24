@@ -82,14 +82,23 @@ const TodoWrapper = styled.div`
   width: 90%;
 
   margin: 12px;
+  display: flex;
 `;
 
-const TodoText = styled.span``;
+const TodoText = styled.span`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Bin = styled.img`
   width: 16px;
   height: 16px;
   margin-left: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default ItemList;
