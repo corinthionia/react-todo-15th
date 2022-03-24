@@ -59,23 +59,29 @@ const ItemList = ({ itemList, setItemList }) => {
 };
 
 const ListTitle = styled.div`
-  height: 5%;
-  background: yellow;
+  height: 7.5%;
+  padding-left: 16px;
+  font-size: 20px;
+
   display: flex;
   align-items: center;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
 `;
 
 const List = styled.section`
-  height: 35%;
-  background: powderblue;
+  height: 32.5%;
   overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const TodoWrapper = styled.div`
-  width: 100%;
+  width: 90%;
 
-  display: flex;
-  justify-content: space-between;
+  margin: 12px;
 `;
 
 const TodoText = styled.span``;
@@ -83,6 +89,7 @@ const TodoText = styled.span``;
 const Bin = styled.img`
   width: 16px;
   height: 16px;
+  margin-left: 8px;
 `;
 
 export default ItemList;

@@ -12,7 +12,7 @@ const InputField = ({ itemList, setItemList }) => {
     e.preventDefault();
 
     const todo = { id: Date.now(), text: inputText, isDone: false };
-    setItemList([...itemList, todo]);
+    setItemList([todo, ...itemList]);
 
     setInputText('');
   };
@@ -20,7 +20,7 @@ const InputField = ({ itemList, setItemList }) => {
   return (
     <InputForm onSubmit={handleFormSubmit}>
       <Input value={inputText} onChange={handleInputChange} />
-      <SubmitBtn onClick={handleFormSubmit}>+</SubmitBtn>
+      <SubmitBtn onClick={handleFormSubmit}>➕</SubmitBtn>
     </InputForm>
   );
 };
@@ -34,11 +34,18 @@ const InputForm = styled.form`
 
 const Input = styled.input`
   width: 80%;
+  height: 50%;
+  border-radius: 8px;
+  border: 1px solid #ececec;
 `;
 
 const SubmitBtn = styled.button`
   width: 10%;
+  height: 50%;
+
   background: none;
+  border-radius: 8px;
+  border: 1px solid #ececec;
 `;
 
 export default InputField;
