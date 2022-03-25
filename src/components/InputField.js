@@ -1,29 +1,26 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
 const InputField = ({ setItemList }) => {
   const [inputText, setInputText] = useState('');
 
-  const handleInputChange = useCallback((e) => {
+  const handleInputChange = (e) => {
     setInputText(e.target.value);
-  }, []);
+  };
 
-  const handleFormSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
 
-      if (inputText) {
-        const todo = { id: Date.now(), text: inputText, isDone: false };
-        setItemList((itemList) => [todo, ...itemList]);
-      } else {
-        alert('할일을 입력해 주세요');
-      }
+    if (inputText) {
+      const todo = { id: Date.now(), text: inputText, isDone: false };
+      setItemList((itemList) => [todo, ...itemList]);
+    } else {
+      alert('할일을 입력해 주세요');
+    }
 
-      setInputText('');
-    },
-    [inputText, setItemList]
-  );
+    setInputText('');
+  };
 
   return (
     <InputForm onSubmit={handleFormSubmit}>
