@@ -56,6 +56,17 @@ const List = styled.section`
   align-items: center;
 
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${COLORS.scrollbar};
+    background-clip: padding-box;
+    border-radius: 10px;
+    border: 0.25rem solid transparent;
+  }
 `;
 
 const TodoWrapper = styled.div`
@@ -70,7 +81,7 @@ const TodoText = styled.span`
   ${({ isDoneList }) =>
     isDoneList &&
     css`
-      color: grey;
+      color: ${COLORS.lightgrey};
       text-decoration: line-through;
     `}
 

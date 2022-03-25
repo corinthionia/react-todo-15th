@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
         align-items: center;
 
-        color: ${COLORS.font};
+        color: ${COLORS.darkgrey};
         background: radial-gradient(
       circle at 50% 0,
       rgba(255, 38, 38, 0.5),
