@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
+import { COLORS } from '../constants/COLORS';
 
-const ItemList = ({ itemList, setItemList }) => {
-  const todoList = itemList.filter((todo) => todo.isDone === false);
-  const doneList = itemList.filter((todo) => todo.isDone === true);
+const ItemList = ({ isDoneList, itemList, setItemList }) => {
+  const list = itemList.filter((todo) => todo.isDone === isDoneList);
 
   const handleTodoClick = (e) => {
     const newList = itemList.map((todo) =>
@@ -24,26 +24,15 @@ const ItemList = ({ itemList, setItemList }) => {
 
   return (
     <>
-      <ListTitle>{`${todoList.length}개의 할일이 남아 있어요`}</ListTitle>
+      <ListTitle>
+        {isDoneList
+          ? `${list.length}개의 할일을 완료했어요`
+          : `${list.length}개의 할일이 남아있어요`}
+      </ListTitle>
       <List>
-        {todoList.map(({ id, text }) => (
+        {list.map(({ id, text }) => (
           <TodoWrapper key={id}>
-            <TodoText id={id} isDone={false} onClick={handleTodoClick}>
-              {text}
-            </TodoText>
-            <Bin
-              src={`${process.env.PUBLIC_URL}/img/bin.png`}
-              id={id}
-              onClick={handleBinClick}
-            />
-          </TodoWrapper>
-        ))}
-      </List>
-      <ListTitle>{`${doneList.length}개의 할일을 완료했어요`}</ListTitle>
-      <List>
-        {doneList.map(({ id, text }) => (
-          <TodoWrapper key={id}>
-            <TodoText id={id} isDone={true} onClick={handleTodoClick}>
+            <TodoText id={id} isDoneList={isDoneList} onClick={handleTodoClick}>
               {text}
             </TodoText>
             <Bin
@@ -65,8 +54,8 @@ const ListTitle = styled.div`
 
   display: flex;
   align-items: center;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  border-top: 1px solid ${COLORS.border};
+  border-bottom: 1px solid ${COLORS.border};
 `;
 
 const List = styled.section`
@@ -86,16 +75,14 @@ const TodoWrapper = styled.div`
 `;
 
 const TodoText = styled.span`
-  ${({ isDone }) =>
-    isDone &&
+  ${({ isDoneList }) =>
+    isDoneList &&
     css`
       color: grey;
       text-decoration: line-through;
     `}
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 const Bin = styled.img`
@@ -103,9 +90,7 @@ const Bin = styled.img`
   height: 16px;
   margin-left: 8px;
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export default ItemList;

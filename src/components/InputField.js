@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { COLORS } from '../constants/COLORS';
 
 const InputField = ({ itemList, setItemList }) => {
   const [inputText, setInputText] = useState('');
@@ -41,13 +42,14 @@ const InputForm = styled.form`
 const Input = styled.input`
   width: 77.5%;
   height: 50%;
-  border-radius: 8px;
-  border: 1px solid #ececec;
   padding-left: 2.5%;
-  background: rgba(255, 255, 255, 0.1);
+
+  border-radius: 8px;
+  border: 1px solid ${COLORS.border};
+  background: ${COLORS.background};
 
   ::placeholder {
-    color: #ececec;
+    color: ${COLORS.placeholder};
   }
 `;
 
@@ -57,11 +59,9 @@ const SubmitBtn = styled.button`
 
   background: none;
   border-radius: 8px;
-  border: 1px solid #ececec;
+  border: 1px solid ${COLORS.border};
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export default InputField;

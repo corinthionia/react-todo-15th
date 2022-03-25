@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputField from './components/InputField';
 import ItemList from './components/ItemList';
+import { COLORS } from './constants/COLORS';
 import { GlobalStyle } from './style/GlobalStyle';
 
 function App() {
@@ -19,7 +20,16 @@ function App() {
       <Wrapper>
         <Header>투두리스트</Header>
         <InputField itemList={itemList} setItemList={setItemList} />
-        <ItemList itemList={itemList} setItemList={setItemList} />
+        <ItemList
+          isDoneList={false}
+          itemList={itemList}
+          setItemList={setItemList}
+        />
+        <ItemList
+          isDoneList={true}
+          itemList={itemList}
+          setItemList={setItemList}
+        />
       </Wrapper>
     </>
   );
@@ -30,10 +40,10 @@ const Wrapper = styled.main`
   height: 700px;
 
   border-radius: 16px;
-  border: 1px solid #ececec;
+  border: 1px solid ${COLORS.border};
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.1);
+  background: ${COLORS.background};
 `;
 
 const Header = styled.header`
@@ -44,7 +54,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid ${COLORS.border};
 `;
 
 export default App;
