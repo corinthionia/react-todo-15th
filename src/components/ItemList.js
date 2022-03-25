@@ -6,19 +6,19 @@ const ItemList = ({ isDoneList, itemList, setItemList }) => {
   const filteredList = itemList.filter((item) => item.isDone === isDoneList);
 
   const handleTextClick = (e) => {
-    const newList = filteredList.map((item) =>
-      item.id === parseInt(e.target.id)
-        ? { ...item, isDone: !item.isDone }
-        : item
-    );
+    const newList = (filteredList) =>
+      filteredList.map((item) =>
+        item.id === parseInt(e.target.id)
+          ? { ...item, isDone: !item.isDone }
+          : item
+      );
 
     setItemList(newList);
   };
 
   const handleDeleteBtnClick = (e) => {
-    const newList = filteredList.filter(
-      (todo) => todo.id !== parseInt(e.target.id)
-    );
+    const newList = (filteredList) =>
+      filteredList.filter((todo) => todo.id !== parseInt(e.target.id));
 
     setItemList(newList);
   };

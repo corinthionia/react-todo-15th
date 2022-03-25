@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
 const InputField = ({ setItemList }) => {
+  console.log('input렌더링');
   const [inputText, setInputText] = useState('');
 
   const handleInputChange = useCallback((e) => {
