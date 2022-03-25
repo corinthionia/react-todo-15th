@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import InputField from './components/InputField';
-import ItemList from './components/ItemList';
 import { COLORS } from './constants/COLORS';
 import { GlobalStyle } from './style/GlobalStyle';
+import InputField from './components/InputField';
+import ItemList from './components/ItemList';
 
 function App() {
   const [itemList, setItemList] = useState(
@@ -14,6 +14,30 @@ function App() {
     localStorage.setItem('itemList', JSON.stringify(itemList));
   }, [itemList]);
 
+  const handleTodoClick = useCallback(
+    (e) => {
+      const newList = (itemList) =>
+        itemList.map((todo) =>
+          todo.id === parseInt(e.target.id)
+            ? { ...todo, isDone: !todo.isDone }
+            : todo
+        );
+
+      setItemList(newList);
+    },
+    [setItemList]
+  );
+
+  const handleBinClick = useCallback(
+    (e) => {
+      const filteredList = (itemList) =>
+        itemList.filter((todo) => todo.id !== parseInt(e.target.id));
+
+      setItemList(filteredList);
+    },
+    [setItemList]
+  );
+
   return (
     <>
       <GlobalStyle />
@@ -23,12 +47,14 @@ function App() {
         <ItemList
           isDoneList={false}
           itemList={itemList}
-          setItemList={setItemList}
+          handleBinClick={handleBinClick}
+          handleTodoClick={handleTodoClick}
         />
         <ItemList
           isDoneList={true}
           itemList={itemList}
-          setItemList={setItemList}
+          handleBinClick={handleBinClick}
+          handleTodoClick={handleTodoClick}
         />
       </Wrapper>
     </>

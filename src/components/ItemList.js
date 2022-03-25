@@ -1,36 +1,24 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
-const ItemList = ({ isDoneList, itemList, setItemList }) => {
-  const list = itemList.filter((todo) => todo.isDone === isDoneList);
-
-  const handleTodoClick = (e) => {
-    const newList = itemList.map((todo) =>
-      todo.id === parseInt(e.target.id)
-        ? { ...todo, isDone: !todo.isDone }
-        : todo
-    );
-
-    setItemList(newList);
-  };
-
-  const handleBinClick = (e) => {
-    const filteredList = itemList.filter(
-      (todo) => todo.id !== parseInt(e.target.id)
-    );
-
-    setItemList(filteredList);
-  };
+const ItemList = ({
+  isDoneList,
+  itemList,
+  handleBinClick,
+  handleTodoClick,
+}) => {
+  const filteredList = itemList.filter((todo) => todo.isDone === isDoneList);
 
   return (
     <>
       <ListTitle>
         {isDoneList
-          ? `${list.length}개의 할일을 완료했어요`
-          : `${list.length}개의 할일이 남아있어요`}
+          ? `${filteredList.length}개의 할일을 완료했어요`
+          : `${filteredList.length}개의 할일이 남아있어요`}
       </ListTitle>
       <List>
-        {list.map(({ id, text }) => (
+        {filteredList.map(({ id, text }) => (
           <TodoWrapper key={id}>
             <TodoText id={id} isDoneList={isDoneList} onClick={handleTodoClick}>
               {text}
@@ -50,28 +38,32 @@ const ItemList = ({ isDoneList, itemList, setItemList }) => {
 const ListTitle = styled.div`
   height: 7.5%;
   padding-left: 16px;
-  font-size: 20px;
 
   display: flex;
   align-items: center;
+
+  font-size: 20px;
+
   border-top: 1px solid ${COLORS.border};
   border-bottom: 1px solid ${COLORS.border};
 `;
 
 const List = styled.section`
   height: 32.5%;
-  overflow: auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow: auto;
 `;
 
 const TodoWrapper = styled.div`
   width: 90%;
-
   margin: 12px;
+
   display: flex;
+  align-items: center;
 `;
 
 const TodoText = styled.span`
@@ -93,4 +85,4 @@ const Bin = styled.img`
   cursor: pointer;
 `;
 
-export default ItemList;
+export default React.memo(ItemList);
