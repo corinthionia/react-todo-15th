@@ -80,31 +80,4 @@ const List = styled.section`
   }
 `;
 
-// const TodoWrapper = styled.div`
-//   width: 90%;
-//   margin: 12px;
-
-//   display: flex;
-//   align-items: center;
-// `;
-
-// const TodoText = styled.span`
-//   ${({ isDoneList }) =>
-//     isDoneList &&
-//     css`
-//       color: ${COLORS.lightgrey};
-//       text-decoration: line-through;
-//     `}
-
-//   cursor: pointer;
-// `;
-
-// const DeleteBtn = styled.img`
-//   width: 16px;
-//   height: 16px;
-//   margin-left: 8px;
-
-//   cursor: pointer;
-// `;
-
 export default ItemList;
