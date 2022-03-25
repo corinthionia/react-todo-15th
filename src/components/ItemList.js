@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ItemList = ({ itemList, setItemList }) => {
   const todoList = itemList.filter((todo) => todo.isDone === false);
@@ -28,7 +28,7 @@ const ItemList = ({ itemList, setItemList }) => {
       <List>
         {todoList.map(({ id, text }) => (
           <TodoWrapper key={id}>
-            <TodoText id={id} onClick={handleTodoClick}>
+            <TodoText id={id} isDone={false} onClick={handleTodoClick}>
               {text}
             </TodoText>
             <Bin
@@ -43,7 +43,7 @@ const ItemList = ({ itemList, setItemList }) => {
       <List>
         {doneList.map(({ id, text }) => (
           <TodoWrapper key={id}>
-            <TodoText id={id} onClick={handleTodoClick}>
+            <TodoText id={id} isDone={true} onClick={handleTodoClick}>
               {text}
             </TodoText>
             <Bin
@@ -86,6 +86,13 @@ const TodoWrapper = styled.div`
 `;
 
 const TodoText = styled.span`
+  ${({ isDone }) =>
+    isDone &&
+    css`
+      color: grey;
+      text-decoration: line-through;
+    `}
+
   &:hover {
     cursor: pointer;
   }
