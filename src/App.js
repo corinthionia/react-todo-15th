@@ -14,24 +14,6 @@ function App() {
     localStorage.setItem('itemList', JSON.stringify(itemList));
   }, [itemList]);
 
-  const handleTodoClick = (e) => {
-    const newList = itemList.map((todo) =>
-      todo.id === parseInt(e.target.id)
-        ? { ...todo, isDone: !todo.isDone }
-        : todo
-    );
-
-    setItemList(newList);
-  };
-
-  const handleBinClick = (e) => {
-    const newList = itemList.filter(
-      (todo) => todo.id !== parseInt(e.target.id)
-    );
-
-    setItemList(newList);
-  };
-
   return (
     <>
       <GlobalStyle />
@@ -41,14 +23,12 @@ function App() {
         <ItemList
           isDoneList={false}
           itemList={itemList}
-          handleBinClick={handleBinClick}
-          handleTodoClick={handleTodoClick}
+          setItemList={setItemList}
         />
         <ItemList
           isDoneList={true}
           itemList={itemList}
-          handleBinClick={handleBinClick}
-          handleTodoClick={handleTodoClick}
+          setItemList={setItemList}
         />
       </Wrapper>
     </>

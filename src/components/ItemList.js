@@ -1,13 +1,28 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
+import Item from './Item';
 
-const ItemList = ({
-  isDoneList,
-  itemList,
-  handleBinClick,
-  handleTodoClick,
-}) => {
+const ItemList = ({ isDoneList, itemList, setItemList }) => {
   const filteredList = itemList.filter((item) => item.isDone === isDoneList);
+
+  const handleTextClick = (e) => {
+    const newList = filteredList.map((item) =>
+      item.id === parseInt(e.target.id)
+        ? { ...item, isDone: !item.isDone }
+        : item
+    );
+
+    setItemList(newList);
+  };
+
+  const handleDeleteBtnClick = (e) => {
+    const newList = filteredList.filter(
+      (todo) => todo.id !== parseInt(e.target.id)
+    );
+
+    setItemList(newList);
+  };
+
   return (
     <>
       <ListTitle>
@@ -17,16 +32,14 @@ const ItemList = ({
       </ListTitle>
       <List>
         {filteredList.map(({ id, text }) => (
-          <TodoWrapper key={id}>
-            <TodoText id={id} isDoneList={isDoneList} onClick={handleTodoClick}>
-              {text}
-            </TodoText>
-            <Bin
-              src={`${process.env.PUBLIC_URL}/img/bin.png`}
-              id={id}
-              onClick={handleBinClick}
-            />
-          </TodoWrapper>
+          <Item
+            key={id}
+            id={id}
+            text={text}
+            isDoneList={isDoneList}
+            handleTextClick={handleTextClick}
+            handleDeleteBtnClick={handleDeleteBtnClick}
+          />
         ))}
       </List>
     </>
@@ -67,31 +80,31 @@ const List = styled.section`
   }
 `;
 
-const TodoWrapper = styled.div`
-  width: 90%;
-  margin: 12px;
+// const TodoWrapper = styled.div`
+//   width: 90%;
+//   margin: 12px;
 
-  display: flex;
-  align-items: center;
-`;
+//   display: flex;
+//   align-items: center;
+// `;
 
-const TodoText = styled.span`
-  ${({ isDoneList }) =>
-    isDoneList &&
-    css`
-      color: ${COLORS.lightgrey};
-      text-decoration: line-through;
-    `}
+// const TodoText = styled.span`
+//   ${({ isDoneList }) =>
+//     isDoneList &&
+//     css`
+//       color: ${COLORS.lightgrey};
+//       text-decoration: line-through;
+//     `}
 
-  cursor: pointer;
-`;
+//   cursor: pointer;
+// `;
 
-const Bin = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-left: 8px;
+// const DeleteBtn = styled.img`
+//   width: 16px;
+//   height: 16px;
+//   margin-left: 8px;
 
-  cursor: pointer;
-`;
+//   cursor: pointer;
+// `;
 
 export default ItemList;
