@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { COLORS } from './constants/COLORS';
 import { GlobalStyle } from './style/GlobalStyle';
+import styled from 'styled-components';
 import InputField from './components/InputField';
 import ItemList from './components/ItemList';
 
@@ -14,29 +14,23 @@ function App() {
     localStorage.setItem('itemList', JSON.stringify(itemList));
   }, [itemList]);
 
-  const handleTodoClick = useCallback(
-    (e) => {
-      const newList = (itemList) =>
-        itemList.map((todo) =>
-          todo.id === parseInt(e.target.id)
-            ? { ...todo, isDone: !todo.isDone }
-            : todo
-        );
+  const handleTodoClick = (e) => {
+    const newList = itemList.map((todo) =>
+      todo.id === parseInt(e.target.id)
+        ? { ...todo, isDone: !todo.isDone }
+        : todo
+    );
 
-      setItemList(newList);
-    },
-    [setItemList]
-  );
+    setItemList(newList);
+  };
 
-  const handleBinClick = useCallback(
-    (e) => {
-      const filteredList = (itemList) =>
-        itemList.filter((todo) => todo.id !== parseInt(e.target.id));
+  const handleBinClick = (e) => {
+    const newList = itemList.filter(
+      (todo) => todo.id !== parseInt(e.target.id)
+    );
 
-      setItemList(filteredList);
-    },
-    [setItemList]
-  );
+    setItemList(newList);
+  };
 
   return (
     <>

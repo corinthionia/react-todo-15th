@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
@@ -8,8 +7,7 @@ const ItemList = ({
   handleBinClick,
   handleTodoClick,
 }) => {
-  const filteredList = itemList.filter((todo) => todo.isDone === isDoneList);
-
+  const filteredList = itemList.filter((item) => item.isDone === isDoneList);
   return (
     <>
       <ListTitle>
@@ -96,4 +94,4 @@ const Bin = styled.img`
   cursor: pointer;
 `;
 
-export default React.memo(ItemList);
+export default ItemList;
