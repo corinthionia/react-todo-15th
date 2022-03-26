@@ -12,7 +12,7 @@ const InputField = ({ setItemList }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (inputText) {
+    if (inputText.replace(/\s+/g, '')) {
       const todo = { id: Date.now(), text: inputText, isDone: false };
       setItemList((itemList) => [todo, ...itemList]);
     } else {

@@ -50,4 +50,4 @@ const DeleteBtn = styled.img`
   cursor: pointer;
 `;
 
-export default Item;
+export default React.memo(Item);
