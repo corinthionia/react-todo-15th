@@ -19,7 +19,7 @@ function App() {
       <GlobalStyle />
       <Wrapper>
         <Header>투두리스트</Header>
-        <InputField itemList={itemList} setItemList={setItemList} />
+        <InputField setItemList={setItemList} />
         <ItemList
           isDoneList={false}
           itemList={itemList}
