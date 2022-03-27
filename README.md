@@ -1,4 +1,4 @@
-# 5주차 미션: React-Todo: Refactor!💌
+# 3주차 미션: React-Todo: Refactor!💌
 
 ## 서론
 안녕하세요 14기 프론트엔드 운영진 김현재입니다.🤗
