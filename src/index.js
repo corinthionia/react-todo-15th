@@ -1,5 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import ItemListProvider from './contexts/ItemListContext';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <ItemListProvider>
+    <App />
+  </ItemListProvider>,
+  document.getElementById('root')
+);

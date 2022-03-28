@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
+import { ItemListContext } from '../contexts/ItemListContext';
 
-const InputField = ({ setItemList }) => {
+const InputField = () => {
+  const { setItemListHandler } = useContext(ItemListContext);
   const [inputText, setInputText] = useState('');
 
   const handleInputChange = (e) => {
@@ -14,7 +16,7 @@ const InputField = ({ setItemList }) => {
 
     if (inputText.replace(/\s+/g, '')) {
       const todo = { id: Date.now(), text: inputText, isDone: false };
-      setItemList((itemList) => [todo, ...itemList]);
+      setItemListHandler((itemList) => [todo, ...itemList]);
     } else {
       alert('할일을 입력해 주세요');
     }

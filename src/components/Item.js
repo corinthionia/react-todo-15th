@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
@@ -50,4 +49,4 @@ const DeleteBtn = styled.img`
   cursor: pointer;
 `;
 
-export default React.memo(Item);
+export default Item;

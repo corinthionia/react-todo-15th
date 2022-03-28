@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
+import { ItemListContext } from '../contexts/ItemListContext';
 import Item from './Item';
 
-const ItemList = ({ isDoneList, itemList, setItemList }) => {
+const ItemList = ({ isDoneList }) => {
+  const { itemList, setItemListHandler } = useContext(ItemListContext);
+
   const filteredList = itemList.filter((item) => item.isDone === isDoneList);
 
   const handleTextClick = (e) => {
@@ -13,14 +17,14 @@ const ItemList = ({ isDoneList, itemList, setItemList }) => {
           : item
       );
 
-    setItemList(newList);
+    setItemListHandler(newList);
   };
 
   const handleDeleteBtnClick = (e) => {
     const newList = (filteredList) =>
       filteredList.filter((todo) => todo.id !== parseInt(e.target.id));
 
-    setItemList(newList);
+    setItemListHandler(newList);
   };
 
   return (
