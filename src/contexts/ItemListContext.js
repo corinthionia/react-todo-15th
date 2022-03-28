@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const ItemListContext = createContext({
   state: { itemList: [] },
@@ -8,17 +9,16 @@ export const ItemListContext = createContext({
 });
 
 const ItemListProvider = ({ children }) => {
-  const [itemList, setItemList] = useState(
-    JSON.parse(localStorage.getItem('itemList')) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem('itemList', JSON.stringify(itemList));
-  }, [itemList]);
+  const [getItemsFromLocalStorage, setItemstoLocalStorage] = useLocalStorage();
+  const [itemList, setItemList] = useState(getItemsFromLocalStorage() || []);
 
   const setItemListHandler = (itemList) => {
     setItemList(itemList);
   };
+
+  useEffect(() => {
+    setItemstoLocalStorage(itemList);
+  }, [itemList]);
 
   return (
     <ItemListContext.Provider value={{ itemList, setItemListHandler }}>
