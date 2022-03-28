@@ -1,15 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 import { ItemListContext } from '../contexts/ItemListContext';
+import useInput from '../hooks/useInput';
 
 const InputField = () => {
   const { setItemListHandler } = useContext(ItemListContext);
-  const [inputText, setInputText] = useState('');
-
-  const handleInputChange = (e) => {
-    setInputText(e.target.value);
-  };
+  const [inputText, handleInputChange, resetInputText] = useInput('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +18,7 @@ const InputField = () => {
       alert('할일을 입력해 주세요');
     }
 
-    setInputText('');
+    resetInputText();
   };
 
   return (
