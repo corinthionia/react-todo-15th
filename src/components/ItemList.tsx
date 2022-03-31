@@ -5,13 +5,15 @@ import { ItemListContext } from '../contexts/ItemListContext';
 import Item from './Item';
 
 const ItemList = ({ isDoneList }) => {
-  const { itemList, setItemListHandler } = useContext(ItemListContext);
+  const { itemList, setItemListHandler }: any = useContext(ItemListContext);
 
-  const filteredList = itemList.filter((item) => item.isDone === isDoneList);
+  const filteredList = itemList.filter(
+    (item: any) => item.isDone === isDoneList
+  );
 
-  const handleTextClick = (e) => {
-    const newList = (filteredList) =>
-      filteredList.map((item) =>
+  const handleTextClick = (e: any) => {
+    const newList = (filteredList: any) =>
+      filteredList.map((item: any) =>
         item.id === parseInt(e.target.id)
           ? { ...item, isDone: !item.isDone }
           : item
@@ -20,9 +22,9 @@ const ItemList = ({ isDoneList }) => {
     setItemListHandler(newList);
   };
 
-  const handleDeleteBtnClick = (e) => {
-    const newList = (filteredList) =>
-      filteredList.filter((todo) => todo.id !== parseInt(e.target.id));
+  const handleDeleteBtnClick = (e: any) => {
+    const newList = (filteredList: any) =>
+      filteredList.filter((todo: any) => todo.id !== parseInt(e.target.id));
 
     setItemListHandler(newList);
   };

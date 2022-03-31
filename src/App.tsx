@@ -1,10 +1,8 @@
-import { useContext, useEffect } from 'react';
 import { COLORS } from './constants/COLORS';
-import { GlobalStyle } from './style/GlobalStyle';
+import { GlobalStyle } from './styles/GlobalStyle';
 import styled from 'styled-components';
 import InputField from './components/InputField';
 import ItemList from './components/ItemList';
-import { ItemListContext } from './contexts/ItemListContext';
 
 function App() {
   return (

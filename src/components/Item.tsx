@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 
+interface isDoneProps {
+  isDoneList: boolean;
+}
+
 const Item = ({
   id,
   text,
@@ -30,7 +34,7 @@ const ItemWrapper = styled.div`
   align-items: center;
 `;
 
-const ItemText = styled.span`
+const ItemText = styled.span<isDoneProps>`
   ${({ isDoneList }) =>
     isDoneList &&
     css`

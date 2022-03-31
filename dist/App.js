@@ -5,7 +5,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var COLORS_1 = require("./constants/COLORS");
-var GlobalStyle_1 = require("./style/GlobalStyle");
+var GlobalStyle_1 = require("./styles/GlobalStyle");
 var styled_components_1 = require("styled-components");
 var InputField_1 = require("./components/InputField");
 var ItemList_1 = require("./components/ItemList");

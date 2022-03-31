@@ -3,7 +3,7 @@ const useLocalStorage = () => {
     return JSON.parse(localStorage.getItem('itemList'));
   };
 
-  const setItemstoLocalStorage = (itemList) => {
+  const setItemstoLocalStorage = (itemList: any) => {
     return localStorage.setItem('itemList', JSON.stringify(itemList));
   };
 

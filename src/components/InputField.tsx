@@ -6,14 +6,14 @@ import { ItemListContext } from '../contexts/ItemListContext';
 
 const InputField = () => {
   const [inputText, handleInputChange, resetInputText] = useInput('');
-  const { setItemListHandler } = useContext(ItemListContext);
+  const { setItemListHandler }: any = useContext(ItemListContext);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
     if (inputText.replace(/\s+/g, '')) {
       const todo = { id: Date.now(), text: inputText, isDone: false };
-      setItemListHandler((itemList) => [todo, ...itemList]);
+      setItemListHandler((itemList: any) => [todo, ...itemList]);
     } else {
       alert('할일을 입력해 주세요');
     }
