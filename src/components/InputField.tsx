@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
-import { ItemListContext } from '../contexts/ItemListContext';
 import useInput from '../hooks/useInput';
+import { ItemListContext } from '../contexts/ItemListContext';
 
 const InputField = () => {
-  const { setItemListHandler } = useContext(ItemListContext);
   const [inputText, handleInputChange, resetInputText] = useInput('');
+  const { setItemListHandler } = useContext(ItemListContext);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
