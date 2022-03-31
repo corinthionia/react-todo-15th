@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import { COLORS } from '../constants/COLORS';
 import { ItemListContext } from '../contexts/ItemListContext';
 import Item from './Item';
+import { IItem, ItemListType } from '../types/types';
 
 const ItemList = ({ isDoneList }) => {
   const { itemList, setItemListHandler }: any = useContext(ItemListContext);
 
   const filteredList = itemList.filter(
-    (item: any) => item.isDone === isDoneList
+    (item: IItem) => item.isDone === isDoneList
   );
 
   const handleTextClick = (e: any) => {
-    const newList = (filteredList: any) =>
-      filteredList.map((item: any) =>
+    const newList = (filteredList: ItemListType) =>
+      filteredList.map((item: IItem) =>
         item.id === parseInt(e.target.id)
           ? { ...item, isDone: !item.isDone }
           : item
@@ -23,8 +24,8 @@ const ItemList = ({ isDoneList }) => {
   };
 
   const handleDeleteBtnClick = (e: any) => {
-    const newList = (filteredList: any) =>
-      filteredList.filter((todo: any) => todo.id !== parseInt(e.target.id));
+    const newList = (filteredList: ItemListType) =>
+      filteredList.filter((todo: IItem) => todo.id !== parseInt(e.target.id));
 
     setItemListHandler(newList);
   };

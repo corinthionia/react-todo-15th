@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { IItem, ItemListType } from '../types/types';
 
 export const ItemListContext = createContext<any>({
   state: { itemList: [] },
@@ -15,7 +16,7 @@ const ItemListProvider = ({ children }) => {
     getItemsFromLocalStorage() || []
   );
 
-  const setItemListHandler = (itemList: any) => {
+  const setItemListHandler = (itemList: ItemListType) => {
     setItemList(itemList);
   };
 
