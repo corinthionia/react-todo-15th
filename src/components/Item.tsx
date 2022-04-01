@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { COLORS } from '../constants/COLORS';
-import { isDoneList } from '../types/types';
+import { IIsDoneList } from '../types/types';
 
 const Item = ({
   id,
@@ -31,7 +31,7 @@ const ItemWrapper = styled.div`
   align-items: center;
 `;
 
-const ItemText = styled.span<isDoneList>`
+const ItemText = styled.span<IIsDoneList>`
   ${({ isDoneList }) =>
     isDoneList &&
     css`

@@ -4,8 +4,6 @@ export interface IItem {
   isDone: boolean;
 }
 
-export type ItemListType = IItem[];
-
-export interface isDoneList {
+export interface IIsDoneList {
   isDoneList: boolean;
 }

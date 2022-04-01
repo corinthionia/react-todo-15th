@@ -1,15 +1,15 @@
-import { ItemListType } from '../types/types';
+import { IItem } from '../types/types';
 
 const useLocalStorage = () => {
   const getItemsFromLocalStorage = () => {
     return JSON.parse(localStorage.getItem('itemList'));
   };
 
-  const setItemstoLocalStorage = (itemList: ItemListType) => {
+  const setItemstoLocalStorage = (itemList: IItem[]) => {
     return localStorage.setItem('itemList', JSON.stringify(itemList));
   };
 
-  return [getItemsFromLocalStorage, setItemstoLocalStorage];
+  return { getItemsFromLocalStorage, setItemstoLocalStorage };
 };
 
 export default useLocalStorage;

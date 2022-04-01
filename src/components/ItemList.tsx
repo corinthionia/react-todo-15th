@@ -1,21 +1,23 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
+import Item from './Item';
 import { COLORS } from '../constants/COLORS';
 import { ItemListContext } from '../contexts/ItemListContext';
-import Item from './Item';
-import { IItem, ItemListType } from '../types/types';
+import { IItem } from '../types/types';
 
 const ItemList = ({ isDoneList }) => {
-  const { itemList, setItemListHandler }: any = useContext(ItemListContext);
+  const { itemList, setItemListHandler } = useContext(ItemListContext);
 
   const filteredList = itemList.filter(
     (item: IItem) => item.isDone === isDoneList
   );
 
-  const handleTextClick = (e: any) => {
-    const newList = (filteredList: ItemListType) =>
+  const handleTextClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const textElement: HTMLButtonElement = e.currentTarget;
+
+    const newList = (filteredList: IItem[]) =>
       filteredList.map((item: IItem) =>
-        item.id === parseInt(e.target.id)
+        item.id === parseInt(textElement.id)
           ? { ...item, isDone: !item.isDone }
           : item
       );
@@ -23,9 +25,11 @@ const ItemList = ({ isDoneList }) => {
     setItemListHandler(newList);
   };
 
-  const handleDeleteBtnClick = (e: any) => {
-    const newList = (filteredList: ItemListType) =>
-      filteredList.filter((todo: IItem) => todo.id !== parseInt(e.target.id));
+  const handleDeleteBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const deleteBtn: HTMLButtonElement = e.currentTarget;
+
+    const newList = (filteredList: IItem[]) =>
+      filteredList.filter((todo: IItem) => todo.id !== parseInt(deleteBtn.id));
 
     setItemListHandler(newList);
   };

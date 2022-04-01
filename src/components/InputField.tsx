@@ -1,20 +1,20 @@
 import { useContext } from 'react';
-import { COLORS } from '../constants/COLORS';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
+import { COLORS } from '../constants/COLORS';
 import { ItemListContext } from '../contexts/ItemListContext';
-import { ItemListType } from '../types/types';
+import { IItem } from '../types/types';
 
 const InputField = () => {
-  const [inputText, handleInputChange, resetInputText] = useInput('');
-  const { setItemListHandler }: any = useContext(ItemListContext);
+  const { inputText, handleInputChange, resetInputText } = useInput('');
+  const { setItemListHandler } = useContext(ItemListContext);
 
   const handleFormSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (inputText.replace(/\s+/g, '')) {
       const todo = { id: Date.now(), text: inputText, isDone: false };
-      setItemListHandler((itemList: ItemListType) => [todo, ...itemList]);
+      setItemListHandler((itemList: IItem[]) => [todo, ...itemList]);
     } else {
       alert('할일을 입력해 주세요');
     }
